@@ -1,0 +1,271 @@
+.levels {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 42px 0 73px;
+  // background: linear-gradient(180deg, #27282e 20%, rgba(114, 55, 204, 0.23) 60%, rgba(28, 29, 33, 0) 128.29%);
+  // overflow: hidden;
+  @media (max-width: 991px){
+    padding: 16px 0 96px;
+  }
+  @media (max-width: 575px){
+    overflow: hidden;
+    padding: 25px 0 10px;
+  }
+
+  &__decor {
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    @media (max-width: 575px){
+      min-width: 140%;
+      height: 50%;
+    }
+  }
+  &__decor-shadow {
+    position: absolute;
+    width: 140%;
+    height: 100%;
+    z-index: 5;
+    display: block;
+    bottom: -30%;
+    left:-30%;
+    // object-fit: cover;
+    @media (max-width: 991px){
+      left: -20%;
+    }
+    @media (max-width: 767px){
+      left: -10%;
+    }
+    @media (max-width: 767px){
+      left: -30%;
+    }
+  }
+
+  &__container {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      left:-22.5%;
+      top: -24.5%;
+      width: 1134px;
+      height: 916px;
+      background: url(../../../images/dist/levels/flashlight.svg) center/contain no-repeat;
+      pointer-events: none;
+      @media (max-width: 991px){
+        // height: 100%;
+        // left: -19%;
+        // left: 20px;
+        top: -21.5%;
+      }
+      @media (max-width: 575px){
+        width: 100%;
+        height: 410px;
+        background-size: cover;
+        left: 0%;
+        top: 17.5%;
+      }
+    }
+  }
+  &__title {
+    position: relative;
+    margin-bottom: 25px;
+    @media (max-width: 991px){
+      margin-bottom: 35px;
+    }
+    @media (max-width: 575px){
+      margin-bottom: 10px;
+    }
+  }
+  &__slider {
+    max-width: 767px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  &__slide {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    user-select: none;
+    will-change: transform;
+    overflow: hidden;
+    &-comfort {
+      .car {
+        &::before {
+          content: '';
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: url(../../../images/dist/levels/comfort/front-lights.svg) -3.2% 67%/19% no-repeat;
+        }
+        &::after {
+          content: '';
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url(../../../images/dist/levels/comfort/rear-lights.svg) 104% 32%/22% no-repeat;
+        }
+        &__wheel {
+          height: 46%;
+        }
+        &__front-wheel {
+          left: 10.6%;
+        }
+
+        &__rear-wheel {
+          left: 71.5%;
+        }
+      }
+    }
+    &-business {
+      .car {
+        &::before {
+          content: '';
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: url(../../../images/dist/levels/business/front-lights.svg) -3.2% 77%/19% no-repeat;
+        }
+
+        &::after {
+          content: '';
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: url(../../../images/dist/levels/business/rear-lights.svg) 102% 40%/18% no-repeat;
+        }
+        &__wheel {
+          height: 46%;
+        }
+        &__front-wheel {
+          left: 9.8%;
+        }
+        &__rear-wheel {
+          left: 71.2%;
+        }
+      }
+    }
+  }
+  &__slide-content {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    @media (max-width: 575px){
+      min-height: 160px;
+      padding-top: 3px;
+    }
+  }
+  &__slide-title {
+    margin-bottom: 15px;
+    font-size: 32px;
+    font-weight: 700;
+    @media (max-width: 575px){
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+  }
+  &__slide-desc {
+    max-width: 490px;
+    margin-bottom: 30px;
+    text-align: center;
+    @media (max-width: 575px){
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+  }
+  &__slide-button {
+    padding: 20px 50px;
+    margin-top: auto;
+    font-size: 20px;
+    // background: linear-gradient(45deg, #3d3849, #2d293c);
+    @media (max-width: 575px){
+      padding: 16px 20px 14px;
+    }
+  }
+
+}
+
+.car {
+  position: relative;
+  backface-visibility: hidden;
+  overflow: hidden;
+  will-change:transform;
+  &::after, &::before {
+    transition: .3s;
+    opacity: 0;
+  }
+  &::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    // top: 28%;
+    // left: 4.5%;
+    top: 0;
+    left: 0;
+    background: url(../../../images/dist/levels/econom/front-lights.svg) 5.3% 88% / 22% no-repeat;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url(../../../images/dist/levels/econom/rear-lights.svg) 95% 36% / 22% no-repeat;
+  }
+  &__body {
+    width: 100%;
+    height: 100%;
+    display: block;
+    // object-fit: fill;
+  }
+  &__wheel {
+    height: 42%;
+    display: block;
+    object-fit: contain;
+    position: absolute;
+    transition: 1s ease-out;
+  }
+  &__front-wheel {
+    left: 16%;
+    bottom: 0;
+  }
+  &__rear-wheel {
+    left: 68%;
+    bottom: 0;
+  }
+  @media(hover: hover){
+    &:hover{
+      &::after,  &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+}
+
+.swiper-slide-active .car {
+  @media (max-width: 991px) {
+    &::after,
+    &::before {
+      transition-delay: 1s;
+      opacity: 1;
+    }
+  }
+}

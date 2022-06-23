@@ -1,0 +1,176 @@
+.modal {
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(#000, 0.65);
+  padding: 0 15px;
+  @media (max-width: 575px){
+    padding: 0;
+  }
+
+  &.active {
+    display: flex;
+    .modal__form {
+      // animation: dropDown .5s forwards cubic-bezier(.65, 1.95, .03, .32); //bounce
+      // animation: dropDown .5s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275); //bounce
+      animation: dropDown 0.5s forwards cubic-bezier(0.215, 0.61, 0.355, 1);
+      @keyframes dropDown {
+        to {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  &__form-text {
+    margin-bottom: 22px;
+    color: #000;
+  }
+
+
+}
+
+.form {
+  width: 100%;
+  max-width: 560px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &:not(.footer__form) {
+    padding: 56px 65px;
+    background: #fff;
+    border-radius: 10px;
+    transform: translateY(-200%);
+    @media (max-width: 991px){
+      padding: 40px;
+    }
+    @media (max-width: 575px) {
+      border-radius: 0;
+    }
+    @media (max-width: 424px) {
+      padding: 20px;
+    }
+    @media (max-width: 374px) {
+      padding: 10px;
+    }
+  }
+  @media (max-width: 575px) {
+    height: 100%;
+  }
+
+  &__text {
+    &:not(.footer__form-text) {
+      max-width: 343px;
+    }
+    align-self: flex-start;
+    @media (max-width: 374px) {
+      font-size: 5.5vw;
+    }
+  }
+  &__label {
+    margin-bottom: 22px;
+  }
+  &__input {
+    @media (max-width: 374px) {
+      font-size: 5.5vw;
+    }
+  }
+  &__button {
+    width: 100%;
+    @media (max-width: 575px) {
+      padding: 22px 22px;
+    }
+    @media (max-width: 374px) {
+      font-size: 7vw;
+    }
+  }
+  &__close {
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    z-index: 5;
+    top: 20px;
+    right: 20px;
+    background: url(../../../images/dist/header/close.svg) center / contain no-repeat;
+    border: none;
+    font-size: 0;
+    cursor: pointer;
+  }
+  .status {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    border-radius: 10px;
+    background: #fff;
+    color: #000;
+
+    @media (max-width: 424px) {
+      padding: 20px;
+    }
+
+    @media (max-width: 374px) {
+      padding: 10px;
+      font-size: 5.5vw;
+    }
+
+    &__ok {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__ok-img {
+      margin-bottom: 25px;
+    }
+
+    &__ok-text {
+      text-align: center;
+      // margin-bottom: 0;
+    }
+
+
+    &__sending,
+    &__ok,
+    &__error {
+      display: none;
+    }
+
+    &.sending {
+      display: flex;
+
+      .status__sending {
+        display: block;
+      }
+    }
+
+    &.ok {
+      display: flex;
+
+      .status__ok {
+        display: flex;
+      }
+    }
+
+    &.error {
+      display: flex;
+
+      .status__error {
+        display: block;
+      }
+    }
+  }
+}

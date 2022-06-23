@@ -1,0 +1,362 @@
+// USER VARIABLES SECTION
+
+$bg: #27282E // Accent Color
+$fontsize: 16px // Body Font Size
+$textcolor: #fff // Text Color
+$mainegradient: linear-gradient(135deg, #BE94FF 0%, #6500FF 100%)
+$secondgradient: linear-gradient(157.85deg, #A061FF 3.03%, #350089 95.07%)
+$boxshadow: 0px 0px 20px rgba(114, 55, 204, 0.5)
+$lineheight: 1 // Document Line Height
+$h1-fz: 72px
+$h2-fz: 48px
+$h2-fz-m: 40px
+$h2-fz-sm: 32px
+$userfont: GothamPro, sans-serif // User Font Family
+$systemfont: -apple-system, BlinkMacSystemFont, Arial, sans-serif // System Font Family
+
+// Bootstrap compatible gutter variable => $gutter
+$grid-gutter-width: 30px
+$gutter: $grid-gutter-width
+
+// IMPORT SECTION
+
+@import 'node_modules/bootstrap/scss/bootstrap-reboot.scss' // Bootstrap Reboot collection // сброс стилей
+// @import '../../../node_modules/swiper/swiper-bundle.min'
+@import '../../../node_modules/swiper/swiper.min'
+
+// FONTS LOAD SECTION
+
+@mixin font($fname, $fstyle, $fweight, $furl)
+	@font-face
+		font-family: $fname
+		font-style: $fstyle
+		font-weight: $fweight
+		src: url($furl) format('woff2')
+		font-display: swap
+
+// @include font('roboto-oh5', normal, 400, '../fonts/roboto-regular-webfont.woff2')
+// @include font('roboto-oh5', italic, 400, '../fonts/roboto-italic-webfont.woff2')
+// @include font('roboto-oh5', normal, 700, '../fonts/roboto-bold-webfont.woff2')
+// @include font('roboto-oh5', italic, 700, '../fonts/roboto-bolditalic-webfont.woff2')
+
+@include font('GothamPro', normal, 400, '../fonts/GothamPro.woff2')
+@include font('GothamPro', medium, 500, '../fonts/GothamPro-Medium.woff2')
+@include font('GothamPro', bold, 700, '../fonts/GothamPro-Bold.woff2')
+
+// GENERAL CSS SETTINGS
+
+::placeholder
+	color: #666
+
+// ::selection
+// 	background-color: black
+	// color: #fff
+
+:focus
+	outline: none
+:focus-visible
+	outline: #06f auto 2px
+	outline-offset: 2px
+
+
+a, a:active, a:hover
+	text-decoration: none
+
+input, textarea
+	outline: none
+	&:focus:required:invalid
+		border-color: red
+	&:required:valid
+		border-color: green
+
+body
+	background: $bg
+	position: relative
+	font-family: $userfont
+	font-size: $fontsize
+	line-height: $lineheight
+	color: $textcolor
+	position: relative
+	overflow-x: hidden
+	&.lock
+		overflow: hidden
+
+.preloader
+	width: 100vw
+	height: 100vh
+	position: fixed
+	z-index: 20
+	top: 0
+	left: 0
+	display: flex
+	align-items: center
+	justify-content: center
+	background: $bg
+
+
+.wrapper
+	position: relative
+	display: flex
+	flex-direction: column
+	min-height: 100vh
+	// margin: auto
+	background: $bg
+	overflow: hidden
+
+.container
+	max-width: 1100px
+	min-width: 320px
+	width: 100%
+	height: 100%
+	margin: 0 auto
+	padding: 0 15px
+	// @media (max-width: 424px)
+	// 	padding: 0 10px
+
+.main
+	flex: 1 1 auto
+
+.title
+	margin: 0
+	font-size: $h2-fz
+	font-weight: 700
+	line-height: 120%
+	@media (max-width: 767px)
+		font-size: $h2-fz-m
+	@media (max-width: 575px)
+		// text-align: center
+		line-height: 1
+		font-size: $h2-fz-sm
+	@media (max-width: 374px)
+		font-size: 8.8vw
+
+.text
+	font-size: 20px
+	line-height: 120%
+
+//! градиентыный бордер
+//@ у родителя position: relative; z-index: 1
+.gradient-box
+	width: fit-content
+	position: relative
+	display: flex
+	align-items: center
+	justify-content: center
+	padding: 20px 39px
+	border: none
+	border-radius: 10px
+	font-size: 25px
+	font-weight: 700
+	line-height: 1
+	text-transform: uppercase
+	background: $bg
+	box-shadow: 0px 0px 20px rgba(114, 55, 204, 0.5)
+	@media (max-width: 374px)
+		&:not(.button-sm, .gradient-box--input-box)
+			padding: 20px
+			width: 100%
+			font-size: 7vw
+	&::after
+		content: ''
+		position: absolute
+		top: -2px
+		right: -2px
+		left: -2px
+		bottom: -2px
+		border-radius: 10px
+		transition: .3s
+		background: $mainegradient
+		z-index: -1
+	&::before
+		content: ''
+		position: absolute
+		z-index: 1
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		border-radius: 10px
+		background: $mainegradient
+		opacity: 0
+		transition: .3s
+	&__text
+		position: relative
+		z-index: 2
+		color: #fff
+		background: $mainegradient
+		-webkit-background-clip: text
+		-webkit-text-fill-color: transparent
+		transition: .3s
+	@media (hover: hover)
+		&:hover:not(.gradient-box--input-box, .gradient-box--dark)
+			.gradient-box__text
+				-webkit-text-fill-color: initial
+				background: transparent
+			&::before
+				opacity: 1
+	&:not(.gradient-box--input-box):active
+		&::before, &::after
+			background: $secondgradient
+		&::before
+			opacity: 1
+		.gradient-box__text
+			-webkit-text-fill-color: initial
+	&:disabled
+		box-shadow: none
+		.gradient-box__text
+			background: #85808C
+			// -webkit-background-clip: text
+			// -webkit-text-fill-color: transparent
+			-webkit-text-fill-color: unset
+		&::after, &::before
+			background: #85808C
+		&::before
+			opacity: 1
+	&--input-box
+		width: 100%
+		padding: 0
+		margin-bottom: 30px
+		background: #fff
+		box-shadow: none
+		cursor: text
+		border-radius: 9px
+		&::before
+			border-radius: 10px
+		&::after
+			background: $secondgradient
+			opacity: 0.75
+		&.disabled
+			box-shadow: none
+			pointer-events: none
+			&::after
+				opacity: 1
+				background: #85808C
+		&.opacityLow
+			&::after
+				opacity: 0.5
+		&.opacityHigh
+			&::after
+				opacity: 1
+		&.done
+			&::after
+				box-shadow: 0px 0px 20px rgba(114, 55, 204, 0.5)
+		@media (hover: hover)
+			&:hover
+				// &::before
+				// 	opacity: 0
+				&::after
+					opacity: 1
+
+	&--dark
+		background: transparent
+		.gradient-box__text
+			color: #fff
+			-webkit-text-fill-color: initial
+			background: transparent
+		&::after
+			background: $secondgradient
+			opacity: .85
+		&::before
+			background: transparent
+		@media (hover: hover)
+			&:hover
+				&::after
+					opacity: .9
+			&:active
+				&::after
+					opacity: 1
+		@media (hover: none)
+			&:active
+				&::after
+					opacity: 1
+
+.input
+	width: 100%
+	padding: 23px 25px
+	background: #fff
+	font-size: 20px
+	font-weight: 400
+	text-transform: none
+	border: none
+	border-radius: 10px
+	background: $secondgradient
+	-webkit-background-clip: text
+	-webkit-text-fill-color: transparent
+	opacity: .75
+	transition: .3s
+	caret-color: #7237CC
+	user-select: inherit
+	&::placeholder
+		background: $secondgradient
+		-webkit-background-clip: text
+		-webkit-text-fill-color: transparent
+		opacity: 1
+	&:focus
+		opacity: 1
+		outline: none
+
+	@media (hover: hover)
+		&:hover
+			opacity: 1
+			// &::placeholder
+			// 	opacity: 1
+		&:focus
+			opacity: 0.5
+	&:disabled
+		opacity: 1
+		&::placeholder
+			-webkit-text-fill-color: #85808C
+			background: transparent
+			opacity: 1
+
+.pagination
+	position: relative
+	z-index: 1
+	display: flex
+	align-items: center
+	justify-content: center
+	width: 100%
+	height: 40px
+
+.swiper-pagination-bullet, .pagination__dot
+	position: relative
+	display: block
+	width: 16px
+	height: 16px
+	margin: 12px
+	border-radius: 100%
+	background: $bg
+	cursor: pointer
+	@media (max-width: 575px)
+		width: 10px
+		height: 10px
+		margin: 10px
+
+	&-active
+		box-shadow: 0px 0px 20px #7237CC
+		background: $mainegradient
+
+	&::after
+		content: ''
+		position: absolute
+		top: -1px
+		right: -1px
+		left: -1px
+		bottom: -1px
+		border-radius: 10px
+		transition: .3s
+		background: $mainegradient
+		z-index: -1
+
+	&::before
+		content: ''
+		position: absolute
+		z-index: 1
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		border-radius: 5px
+		background: $mainegradient
+		opacity: 0
+		transition: .3s
